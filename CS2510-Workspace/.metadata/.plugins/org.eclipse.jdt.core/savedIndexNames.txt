@@ -1,0 +1,2 @@
+INDEX VERSION 1.126+/home/pburden/classes/CS2510-Workspace/.metadata/.plugins/org.eclipse.jdt.core
+3575354579.index

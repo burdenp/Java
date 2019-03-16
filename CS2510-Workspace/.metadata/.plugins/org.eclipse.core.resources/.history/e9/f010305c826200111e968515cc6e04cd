@@ -1,0 +1,38 @@
+
+	// Assignment 7 Problem 2
+	// Partner James Kandebo
+	// partner1username Kandebo
+	// Partner Patrick Burden
+	// partner2username PBurden
+	// 27 February 2012
+public abstract class AbstNode {
+		  String data;
+		  AbstNode next;
+		  AbstNode prev;
+		  AbstNode(String data, AbstNode next, AbstNode prev){
+			   this.data = data;
+			   this.next = next;
+			   this.prev = prev;
+			    }
+		  public int size(){
+			  return 0;
+		  }
+		  public void insertSorted(String s){
+			 this.prev.addAfterNode(new Node(s, null, null));
+			  }
+		 public AbstNode addAfterNode(AbstNode n){
+			 n.next = this.next.next;
+		     n.prev = this.next;
+		     this.next.next.prev = n;
+		     this.next = n;			 
+				 return this;
+			 }
+		 public String dataList(){
+			  return this.toString().concat(this.next.dataList());
+		  }
+		 public void removeSorted(String s){
+			  throw new RuntimeException("Node does not exist");
+		  }
+	}
+
+

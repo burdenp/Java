@@ -1,0 +1,39 @@
+	
+// Assignment 7 Problem 1
+	// Partner James Kandebo
+	// partner1username Kandebo
+	// Partner Patrick Burden
+	// partner2username PBurden
+	// 27 February 2012
+public class Node extends AbstNode{
+	  String data;
+	  Node next;
+	  Node prev;
+	  
+	Node(String data, AbstNode next, AbstNode prev){
+			  super(data, next, prev);
+	    }
+	 public void addAfterNode(Node n){
+		  this.next = n;
+		  this.next.prev = n;
+		  n.next = this.next.next;
+		  n.prev = this.next.next;
+	  }
+	 public void removeNode(Node n){
+		 this.next.prev = this.prev;
+		 this.prev.next = this.next;
+	 }
+	  public int size(){
+		  return + 1 + this.next.size();
+	  }
+	  public void insertSorted(String s){
+		  if(this.next.data.compareTo(s) == 0){
+			  this.addAfterNode(new Node(s, null, null));
+		  }
+		  if(this.next.data.compareTo(s) == -1){
+				  this.prev.addAfterNode(new Node(s, null, null));
+		  }else{
+			  this.next.insertSorted(s);
+		  }
+	  }
+}

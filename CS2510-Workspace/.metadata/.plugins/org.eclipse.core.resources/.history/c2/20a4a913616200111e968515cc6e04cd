@@ -1,0 +1,32 @@
+
+public abstract class AbstNode {
+		  String data;
+		  AbstNode next;
+		  AbstNode prev;
+		  AbstNode(String data, AbstNode next, AbstNode prev){
+			   this.data = data;
+			   this.next = next;
+			   this.prev = prev;
+			    }
+		  public int size(){
+			  return 0;
+		  }
+		  public AbstNode list(){
+			  return this;
+		  }
+		  public void insertSorted(String s){
+			 this.prev.addAfterNode(new Node(s, null, null));
+			  }
+		 public AbstNode addAfterNode(AbstNode n){
+				 this.next = n;
+				 this.next.prev = n;
+				 n.next = this.next.next;
+			     n.prev = this.next.next;
+				 return this;
+			 }
+		 public String dataList(){
+			  return this.next.data.concat(this.next.dataList());
+		  }
+	}
+
+

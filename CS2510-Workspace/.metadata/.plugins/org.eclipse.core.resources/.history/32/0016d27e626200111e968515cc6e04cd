@@ -1,0 +1,75 @@
+
+	// Assignment 7 Problem 2
+	// Partner James Kandebo
+	// partner1username Kandebo
+	// Partner Patrick Burden
+	// partner2username PBurden
+	// 27 February 2012
+public class Deque{
+	  AbstNode head;
+	  AbstNode tail;
+	  
+	  Deque(){
+	   this.head =  new Head(this.tail);
+	   this.tail =  new Tail(this.head);
+	    }
+	  public AbstNode addToHeadNode(AbstNode n){
+		  this.head.next = n;
+		  this.head.next.prev = n;
+		  n.next = this.head.next;
+		  n.prev = this.head;
+		  return this.head;
+	  }
+	  public AbstNode addToTailNode(AbstNode n){
+		  this.tail.prev = n;
+		  this.tail.prev.next = n;
+		  n.prev = this.tail.prev;
+		  n.next = this.tail;
+		  return this.head;
+	  }
+	  public void addAtHead(String st){
+		  addToHeadNode(new Node(st, null, null));
+	  }
+	  public void addAtTail(String st){
+		  addToTailNode(new Node(st, null, null));
+	  }
+	  public int size(){
+		  return head.size();
+	  }
+	  public String removeFromHead(){
+		  if(this.head.next.data.equals("")){
+			  throw new RuntimeException("Can not remove from empty List");
+		  }else{
+		  this.head.next = this.head.next.next;
+		  this.head.next.next.prev = head;
+		  return this.head.next.data;
+		  }
+	  }
+	  public String removeFromTail(){
+		  if(this.head.next.data.equals("")){
+			  throw new RuntimeException("Can not remove from empty List");
+		  }else{
+		  this.tail.prev = this.tail.prev.prev;
+		  this.tail.prev.prev.next = tail;
+		  return this.tail.prev.data;
+		  }
+	  }
+	  public AbstNode list(){
+		  return this.head;
+	  }
+	  public void insertSorted(String s){
+		  if(this.head.next.data.compareTo(s) == 0){
+			  this.addAtHead(s);
+		  }else{
+			  this.head.next.insertSorted(s);
+		  }
+	  }
+	  public void removeSorted(String s){
+		  if(this.head.next.data.compareTo(s) == 0){
+			  this.removeFromHead();
+		  }else{
+			  this.head.next.removeSorted(s);
+		  }
+	  }
+	  
+}
